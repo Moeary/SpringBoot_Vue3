@@ -1,7 +1,8 @@
 <template>
   <div>
+    <router-view />
     <h1>这是主页面</h1>
-    <router-view />  </div>
+  </div>
 </template>
 
 

@@ -41,8 +41,8 @@
         </el-menu-item>
       </el-menu>
     </el-aside>
-    <el-main>
-      <!-- 主体内容 -->
+    <el-main class="main-content">
+      <router-view />
     </el-main>
   </el-container>
 </template>
@@ -54,6 +54,9 @@ export default {
 </script>
 
 <style>
+.main-content {
+  margin-left: 200px;
+}
 .sidebar-container {
   position: fixed;
   left: 0;
