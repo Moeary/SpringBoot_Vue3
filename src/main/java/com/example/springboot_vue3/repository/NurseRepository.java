@@ -7,8 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface NurseRepository extends JpaRepository<Nurse, Integer> {
-    @Query("SELECT n FROM Nurse n WHERE (:name is null or n.name = :name) and (:sex is null or n.sex = :sex) and (:room is null or n.room = :room) and (:grade is null or n.grade = :grade)")
-    Page<Nurse> findByNameAndSexAndRoomAndGrade(@Param("name") String name, @Param("sex") String sex, @Param("room") String room, @Param("grade") String grade, Pageable pageable);
+    @Query("SELECT n FROM Nurse n WHERE (:id is null or n.id = :id) and (:name is null or n.name = :name) and (:sex is null or n.sex = :sex) and (:room is null or n.room = :room) and (:grade is null or n.grade = :grade)")
+    Page<Nurse> findByIdAndNameAndSexAndRoomAndGrade(@Param("id") Long id, @Param("name") String name, @Param("sex") String sex, @Param("room") String room, @Param("grade") String grade, Pageable pageable);
 }

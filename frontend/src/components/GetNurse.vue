@@ -1,4 +1,5 @@
 <template>
+  <router-view />
   <div>
     <form @submit.prevent="searchNurses">
       <label>ID: <input v-model="id" type="text"></label>
@@ -17,7 +18,7 @@
           <option value="高级">高级</option>
         </select>
       </label>
-      <button type="submit" @click="searchNurses">查询</button>
+      <button type="submit">查询</button> <!-- 移除了 @click="searchNurses" -->
     </form>
 
     <table>
@@ -77,8 +78,12 @@ export default {
           },
         }).then(response => {
           console.log("Response data: ", response.data);
-          nurses.value = response.data.content;
-          totalPages.value = response.data.totalPages;
+          if (response.data.content.length === 0) {
+            alert("没有找到匹配的护士");
+          } else {
+            nurses.value = response.data.content;
+            totalPages.value = response.data.totalPages;
+          }
         }).catch(error => {
           console.error('There was a problem with the request:', error);
         });

@@ -32,13 +32,14 @@ public class NurseController {
 
     @GetMapping("/nurses/search")
     public Page<Nurse> searchNurses(
+            @RequestParam(required = false) Long id,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String sex,
             @RequestParam(required = false) String room,
             @RequestParam(required = false) String grade,
             Pageable pageable
     ) {
-        return nurseRepository.findByNameAndSexAndRoomAndGrade(name, sex, room, grade, pageable);
+        return nurseRepository.findByIdAndNameAndSexAndRoomAndGrade(id, name, sex, room, grade, pageable);
     }
 
     @GetMapping("/nurses/all")

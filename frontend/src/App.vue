@@ -1,17 +1,15 @@
 <script>
-import GetNurse from "@/components/GetNurse.vue";
-import {defineComponent} from "vue";
-
-export default defineComponent({
+import SideBar from '@/SideBar.vue';
+export default {
   components: {
-    'get-nurse': GetNurse
+    SideBar,
   }
-});
+}
 </script>
 
 <template>
   <div>
-    <get-nurse></get-nurse>
+    <SideBar />
   </div>
 </template>
 
