@@ -4,10 +4,7 @@ package com.example.springboot_vue3.controller;
 import com.example.springboot_vue3.model.Nurse;
 import com.example.springboot_vue3.repository.NurseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 // 导入分页相关的类
 import org.springframework.data.domain.Page;
@@ -15,7 +12,10 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080") // 允许跨域请求
+@CrossOrigin(origins = {
+        "http://localhost:8080",
+        "http://192.168.1.104:8080"
+})// 允许这两个地址访问本接口
 @RestController
 public class NurseController {
     private final NurseRepository nurseRepository;
@@ -25,12 +25,12 @@ public class NurseController {
         this.nurseRepository = nurseRepository;
     }
 
-    @GetMapping("/nurses")
+    @GetMapping("/api/nurses")
     public List<Nurse> getNurses() {
         return nurseRepository.findAll();
     }
 
-    @GetMapping("/nurses/search")
+    @GetMapping("/api/nurses/search") // 修改这里
     public Page<Nurse> searchNurses(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String name,

@@ -1,5 +1,5 @@
 <template>
-  <router-view />
+  <Sidebar_Setting/>
   <div>
     <form @submit.prevent="searchNurses">
       <label>ID: <input v-model="id" type="text"></label>
@@ -66,7 +66,7 @@ export default {
       nurses.value = [];
       console.log("Searching nurses...");
       nextTick().then(() => {
-        axios.get('http://localhost:80/nurses/search?', {
+        axios.get('http://localhost:80/api/nurses/search?', {
           params: {
             page: page.value,
             size: 10,
