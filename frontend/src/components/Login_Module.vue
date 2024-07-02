@@ -204,14 +204,11 @@ export default {
           const response = await axios.post('/api/user/register', { // 修改为注册 API 的 URL
             idNumber: registerForm.idNumber,
             password: registerForm.password,
-            // ...其他注册信息
           });
 
           if (response.data.success) {
             console.log('注册成功', response.data);
-            // 可以选择在这里自动登录，或者提示用户注册成功
             alert('注册成功！');
-            // ...其他操作，例如清空表单
             await router.push('/login');
           } else {
             console.log('注册失败', response.data.message);
@@ -256,11 +253,6 @@ export default {
   border-radius: 10px;
 }
 
-.login-card-header-right {
-  float: right;
-  font-size: 14px;
-  color: #909399;
-}
 
 .login-card-footer {
   text-align: center;

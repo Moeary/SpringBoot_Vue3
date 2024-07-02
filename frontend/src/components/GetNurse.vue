@@ -1,6 +1,6 @@
 <template>
-  <Sidebar_Setting/>
-  <div>
+  <Admin_Sidebar/>
+  <div class="right">
     <form @submit.prevent="searchNurses">
       <label>ID: <input v-model="id" type="text"></label>
       <label>姓名: <input v-model="name" type="text"></label>
@@ -49,8 +49,10 @@
 <script>
 import { ref, onMounted, nextTick } from 'vue';
 import axios from 'axios';
+import Admin_Sidebar from "@/router/Admin_Sidebar.vue";
 
 export default {
+  components: {Admin_Sidebar},
   setup() {
     const nurses = ref([]);
     const page = ref(0);
@@ -126,3 +128,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.right{
+  position: fixed;
+  left: 220px;
+  top: 10px;
+  height: 100%;
+}
+</style>

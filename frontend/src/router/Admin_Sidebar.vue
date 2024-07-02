@@ -9,12 +9,18 @@
         active-text-color="#409EFF"
     >
       <div class="sidebar-header">
-        <div class="title">管理员菜单</div>
+        <div class="title" style="text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理员菜单 </div>
       </div>
-      <el-menu-item index="/admin/users" @click="navigate('/admin/users')">
+      <el-menu-item index="/admin" @click="navigate('/admin')">
+        <template #title>
+          <i class="el-icon-setting"></i>
+          <span>界面首页</span>
+        </template>
+      </el-menu-item>
+      <el-menu-item index="/admin/nurse" @click="navigate('/admin/nurse')">
         <template #title>
           <i class="el-icon-user"></i>
-          <span>用户管理</span>
+          <span>护士查看</span>
         </template>
       </el-menu-item>
       <el-menu-item index="/admin/settings" @click="navigate('/admin/settings')">

@@ -20,16 +20,24 @@ const routes = [
             requiresAuth: true,
             AdminAuth: true
         },
-        children: [ // 添加子路由
-            {
-                path: 'nurses',
-                component: GetNurse // 替换为实际的护士管理组件
-            },
-            {
-                path: 'settings',
-                component: SystemSettings // 替换为实际的系统设置组件
-            }
-        ]
+    },
+    {
+        path: '/admin/nurse',
+        component: GetNurse,
+        meta: {
+            title: '护工',
+            requiresAuth: true,
+            AdminAuth: true
+        },
+    },
+    {
+        path: '/admin/settings',
+        component: SystemSettings,
+        meta: {
+            title: '系统设置',
+            requiresAuth: true,
+            AdminAuth: true
+        },
     },
     { path: '/home', component: UserManagement,
         meta: {
