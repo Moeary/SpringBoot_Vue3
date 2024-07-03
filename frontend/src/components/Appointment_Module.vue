@@ -2,26 +2,15 @@
   <div class="container">
     <User_Sidebar />
     <div class="right">
-      <h1>我的预约</h1>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>预约时间</th>
-          <th>科室</th>
-          <th>支付金额</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="appointment in appointments" :key="appointment.id">
-          <td>{{ appointment.appointmentDate }}</td>
-          <td>{{ appointment.roomName }}</td>  <!-- Use roomName instead of department -->
-          <td>{{ appointment.paymentAmount }}</td>
-        </tr>
-        </tbody>
-      </table>
+      <el-page-header content="我的预约" /> <el-table :data="appointments" stripe style="width: 100%">
+      <el-table-column prop="appointmentDate" label="预约时间" width="180" />
+      <el-table-column prop="roomName" label="科室" width="180" />
+      <el-table-column prop="paymentAmount" label="支付金额" width="180" />
+    </el-table>
     </div>
   </div>
 </template>
+
 
 <script>
 import User_Sidebar from "@/router/User_Sidebar.vue";

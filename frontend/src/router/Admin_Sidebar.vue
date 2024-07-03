@@ -23,6 +23,24 @@
           <span>护士查看</span>
         </template>
       </el-menu-item>
+      <el-menu-item index="/admin/doctor" @click="navigate('/admin/doctor')">
+        <template #title>
+          <i class="el-icon-setting"></i>
+          <span>医生查看</span>
+        </template>
+      </el-menu-item>
+      <el-menu-item index="/admin/appointment" @click="navigate('/admin/appointment')">
+        <template #title>
+          <i class="el-icon-setting"></i>
+          <span>用户预约单管理</span>
+        </template>
+      </el-menu-item>
+      <el-menu-item index="/admin/user" @click="navigate('/admin/user')">
+        <template #title>
+          <i class="el-icon-setting"></i>
+          <span>用户信息管理</span>
+        </template>
+      </el-menu-item>
       <el-menu-item index="/admin/settings" @click="navigate('/admin/settings')">
         <template #title>
           <i class="el-icon-setting"></i>
@@ -85,17 +103,8 @@ export default {
   font-weight: bold;
 }
 
-.el-menu-item {
-  height: 50px;
-  line-height: 50px;
-  padding: 0 20px;
-}
-
 .el-menu-item i {
   margin-right: 10px;
 }
 
-.el-menu-item.is-active {
-  background-color: #e6f7ff;
-}
 </style>

@@ -36,10 +36,7 @@ public class AppointmentController {
     public ResponseEntity<Map<String, Object>> createAppointment(@RequestBody Appointment appointmentRequest) {
         Map<String, Object> response = new HashMap<>();
 
-        // 将 LocalDate 对象转换为字符串
-        String appointmentDateString = String.valueOf(appointmentRequest.getAppointmentDate());
-
-        Appointment appointment = new Appointment();
+        Appointment appointment;
 
         // 检查用户是否存在
         User user = userRepository.findByIdNumber(appointmentRequest.getIdNumber());
@@ -84,4 +81,19 @@ public class AppointmentController {
         return appointmentRepository.findByUserIdNumber(idNumber, pageable);
     }
 
+    @DeleteMapping("/api/appointments/id_number/{idNumber}")
+    public ResponseEntity<Map<String, Object>> deleteAppointmentsByIdNumber(@PathVariable String idNumber) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 根据身份证号删除预约信息
+            appointmentRepository.deleteAppointmentsByIdNumber(idNumber);
+            response.put("success", true);
+            response.put("message", "预约信息删除成功");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "预约信息删除失败：" + e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

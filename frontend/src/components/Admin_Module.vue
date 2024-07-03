@@ -3,8 +3,8 @@
   <div>
     <Admin_Sidebar/>
     <div class="admin-content">
-      <h1>我是admin</h1>
-      <button @click="logout">登出</button>
+      <h1>Hello,World!</h1>
+      <el-button type="danger" @click="logout">安全登出</el-button>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ const showAdminContent = ref(false);
 
 const logout = () => {
   sessionStorage.clear();
-  router.push('/login');
+  router.push('/');
 };
 
 watch(

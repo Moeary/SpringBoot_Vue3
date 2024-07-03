@@ -8,7 +8,9 @@ import UserManagement from "@/components/User_Module.vue";
 import SystemSettings from "@/components/SystemSetting.vue";
 import Appointments_Module from "@/components/Appointment_Module.vue";
 import Book_Module from "@/components/Book_Module.vue";
-
+import GetDoctor from "@/components/GetDoctor.vue";
+import Admin_Appointment from "@/components/Admin_Appointment.vue";
+import Admin_User from "@/components/Admin_User.vue";
 
 const routes = [
     { path: '/', component: MainPage, meta: { title: '主页' } },
@@ -27,6 +29,33 @@ const routes = [
         component: GetNurse,
         meta: {
             title: '护工',
+            requiresAuth: true,
+            AdminAuth: true
+        },
+    },
+    {
+        path: '/admin/doctor',
+        component: GetDoctor,
+        meta: {
+            title: '医生',
+            requiresAuth: true,
+            AdminAuth: true
+        },
+    },
+    {
+        path: '/admin/user',
+        component: Admin_User,
+        meta: {
+            title: '查看用户',
+            requiresAuth: true,
+            AdminAuth: true
+        },
+    },
+    {
+        path: '/admin/appointment',
+        component: Admin_Appointment,
+        meta: {
+            title: '查看预约',
             requiresAuth: true,
             AdminAuth: true
         },

@@ -1,21 +1,16 @@
 <template>
-  <div class="headBar">
-    <div class="headBarItem" v-for="item in items" :key="item.name">
-      <div class="headBarItemTitle"
-           @mouseover="toggleDropdown(item.name)"
-           @mouseleave="closeDropdown(item.name)">
-        {{ item.name }}
-      </div>
-      <transition name="dropdown">
-        <div class="headBarDropdown" v-show="item.dropdownOpen">
-          <ul>
-            <li v-for="subItem in item.subItems" :key="subItem.name">{{ subItem.name }}</li>
-          </ul>
-        </div>
-      </transition>
+  <div class="header">
+    <div class="headBar">
+      <el-menu mode="horizontal" class="navMenu">
+        <el-sub-menu v-for="item in items" :key="item.name" :index="item.name">
+          <template #title>{{ item.name }}</template>
+          <el-menu-item v-for="subItem in item.subItems" :key="subItem.name" :index="subItem.name">
+            {{ subItem.name }}
+          </el-menu-item>
+        </el-sub-menu>
+      </el-menu>
+      <el-button type="primary" class="loginButton" @click="handleLogin">登录</el-button>
     </div>
-
-    <a href="/login" class="loginButton">登录</a>
   </div>
 </template>
 
@@ -85,67 +80,31 @@ export default {
     };
   },
   methods: {
-    toggleDropdown(itemName) {
-      this.items.forEach(item => {
-        item.dropdownOpen = item.name === itemName;
-      });
-    },
-    closeDropdown(itemName) {
-      const item = this.items.find(item => item.name === itemName);
-      item.dropdownOpen = false;
+    handleLogin() {
+      // 处理登录逻辑，例如跳转到登录页面
+      window.location.href = '/login';
     }
   }
 };
 </script>
 
 <style scoped>
-.headBar {
-  display: flex;
-}
-
-.headBarItem {
-  position: relative;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.headBarItemTitle {
-  font-weight: bold;
-}
-
-.headBarDropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
+.header {
+  width: 80%;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.headBarDropdown ul {
-  list-style-type: none;
-  padding: 0;
+.headBar {
+  align-items: center;
+  width: 80%;
+  max-width: 1000px; /* 可选：限制最大宽度 */
+}
+
+.navMenu {
   margin: 0;
 }
 
-.headBarDropdown ul li {
-  padding: 10px;
-}
-
-.dropdown-enter-active,
-.dropdown-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.dropdown-enter,
-.dropdown-leave-to {
-  opacity: 0;
-}
-
 .loginButton {
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+  margin-left: 20px; /* 可选：调整按钮与菜单的间距 */
 }
 </style>

@@ -2,8 +2,7 @@
   <div class="container">
     <User_Sidebar />
     <div class="right">
-      <h1 >我是Home</h1>
-      <button @click="logout">登出</button>
+          <el-button type="danger" @click="logout">安全登出</el-button>
       <Chat_Module />
     </div>
   </div>
@@ -20,17 +19,13 @@ const logout = () => {
   sessionStorage.clear();
   router.push('/');
 };
+
 </script>
 
 <style scoped>
-  .container {
-  display: flex;
-}
 
-  .right {
-  position: fixed;
-  left: 220px;
-  top: 10px;
-  height: 100%;
+.right {
+  padding: 20px;
+  background-color: #f5f5f5;
 }
 </style>

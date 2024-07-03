@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.springboot_vue3.repository.AppointmentRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository; // 注入 AppointmentRepository
 
     @PostMapping("/user/search")
     public ResponseEntity<Map<String, Object>> queryUser(@RequestBody User loginUser) {
@@ -69,5 +73,43 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @GetMapping("/api/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/api/users/{id}")
+    public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            response.put("success", false);
+            response.put("message", "用户不存在");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        if (user.getIsAdmin()) {
+            response.put("success", false);
+            response.put("message", "不能删除管理员用户");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            // 1. 删除相关预约信息
+            appointmentRepository.deleteAllByIdNumber(user.getIdNumber());
+
+            // 2. 删除用户信息
+            userRepository.deleteById(id);
+
+            response.put("success", true);
+            response.put("message", "用户删除成功");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "删除用户失败");
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
 

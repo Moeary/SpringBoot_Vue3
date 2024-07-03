@@ -31,7 +31,7 @@
       <div v-if="step === 3">
         <h2>支付</h2>
         <p>请扫描下方二维码支付</p>
-        <img :src="paymentQrCode" alt="支付二维码" width="40%" height="60%">
+        <img :src="paymentQrCode" alt="支付二维码" width="20%" height="30%">
         <p>支付金额: {{ paymentAmount }} 元</p>
         <button @click="confirmPayment">确认支付</button>
       </div>
