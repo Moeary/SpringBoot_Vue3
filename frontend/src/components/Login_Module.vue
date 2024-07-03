@@ -174,6 +174,7 @@ export default {
 
             // 存储用户信息到 sessionStorage
             sessionStorage.setItem('idNumber', loginForm.idNumber);
+            sessionStorage.setItem('token', loginForm.idNumber);
             sessionStorage.setItem('username', response.data.username);
             sessionStorage.setItem('isAdmin', response.data.isAdmin); // 存储 isAdmin 信息
 

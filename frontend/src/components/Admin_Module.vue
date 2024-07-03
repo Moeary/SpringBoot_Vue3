@@ -28,7 +28,7 @@ const logout = () => {
 watch(
     () => route.path,
     (newPath) => {
-      showAdminContent.value = newPath === '/admin';
+      showAdminContent.value = newPath === '/';
     },
     { immediate: true }
 );

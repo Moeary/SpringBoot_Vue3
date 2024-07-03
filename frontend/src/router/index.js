@@ -4,10 +4,11 @@ import MainPage from '@/components/Main_Page.vue';
 import GetNurse from '@/components/GetNurse.vue';
 import Login_Module from "@/components/Login_Module.vue";
 import Admin_Module from "@/components/Admin_Module.vue";
-import UserManagement from "@/components/UserManagement.vue";
+import UserManagement from "@/components/User_Module.vue";
 import SystemSettings from "@/components/SystemSetting.vue";
 import Appointments_Module from "@/components/Appointment_Module.vue";
 import Book_Module from "@/components/Book_Module.vue";
+
 
 const routes = [
     { path: '/', component: MainPage, meta: { title: '主页' } },
@@ -66,7 +67,7 @@ const router = createRouter({
     routes
 });
 
-/**
+
 router.beforeEach((to, from, next) => {
     // 在每次路由跳转时都获取最新的 isLoggedIn 状态
     let isLoggedIn = sessionStorage.getItem('token');
@@ -86,6 +87,6 @@ router.beforeEach((to, from, next) => {
         next(); // 无需登录的路由，直接放行
     }
 });
- **/
+
 
 export default router;

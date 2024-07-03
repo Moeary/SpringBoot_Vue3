@@ -1,14 +1,18 @@
 <template>
   <div>
     <router-view />
-    <h1>这是主页面</h1>
+    <MainPage_HeadBar/>
+
   </div>
 </template>
 
-
 <script>
+import MainPage_HeadBar from "@/router/MainPage_Headbar.vue";
 export default {
   // ...
+  components:{
+    MainPage_HeadBar,
+  }
 }
 </script>
 <style>
