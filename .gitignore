@@ -2,6 +2,7 @@ HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 src/main/resources/application.properties
+frontend/src/components/Chat_Module.vue
 
 ### STS ###
 .apt_generated
